@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import EditableField from '../Common/EditableField';
 import EditableChips from '../Common/EditableField/EditableChips';
@@ -16,8 +16,16 @@ interface ICompanyCard {
     setCompany: (company: CompanyProfile) => void;
 }
 const CompanyCard: React.FC<ICompanyCard> = ({ company, setCompany }) => {
+    const ref = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (ref.current) {
+            ref.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }, []);
+
     return (
-        <SS.Card>
+        <SS.Card ref={ref}>
             <S.ProfileHeader>
                 <h2>Company Profile</h2>
             </S.ProfileHeader>
