@@ -1,6 +1,7 @@
 import { createGlobalStyle } from 'styled-components/macro';
 
-export const GlobalStyle = createGlobalStyle`
+// "Any" typing because of React v18 incompatibility with styled-components"
+export const GlobalStyle: any = createGlobalStyle`
   body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

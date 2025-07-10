@@ -1,12 +1,8 @@
 import React from 'react';
-import { Container } from './App.style';
+import ProfileGenerator from './templates/ProfileGenerator';
 
 function App() {
-  return (
-    <Container>
-      <code>TypeScript + Styled Components</code>
-    </Container>
-  );
+    return <ProfileGenerator />;
 }
 
 export default App;
