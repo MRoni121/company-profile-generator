@@ -37,23 +37,3 @@ export const HeaderSubtitle = styled.p`
     max-width: 512px;
     margin: 0 auto;
 `;
-
-export const Card = styled.div`
-    background: ${({ theme }) => theme.colors.white};
-    box-shadow: ${({ theme }) => theme.bowShadow.primary};
-
-    border-radius: 16px;
-    padding: 32px;
-    margin-bottom: 32px;
-`;
-
-export const Form = styled.form`
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-`;
-
-export const FormGroup = styled.div`
-    display: flex;
-    flex-direction: column;
-`;

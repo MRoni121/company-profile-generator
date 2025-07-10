@@ -1,13 +1,20 @@
 import React, { useState } from 'react';
 
-import * as S from './styles';
 import CustomInput from '../../components/Common/CustomInput';
 import CustomButton from '../../components/Common/CustomButton';
-import CustomLabel from '../../components/Common/CustomLabel';
+
+import { CompanyProfile } from '../../interfaces';
+
+import * as SS from '../../components/Common/styles';
+import * as S from './styles';
+
+import mockCompany from '../../mock/mockCompany';
+import CompanyCard from '../../components/CompanyCard';
 
 const ProfileGenerator: React.FC = () => {
     const [url, setUrl] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [company, setCompany] = useState<CompanyProfile>(mockCompany);
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         // TODO
@@ -28,12 +35,12 @@ const ProfileGenerator: React.FC = () => {
                     </S.HeaderSubtitle>
                 </S.Header>
 
-                <S.Card>
-                    <S.Form onSubmit={handleSubmit}>
-                        <S.FormGroup>
-                            <CustomLabel htmlFor="url">
+                <SS.Card>
+                    <SS.Form onSubmit={handleSubmit}>
+                        <SS.FormGroup>
+                            <SS.Label htmlFor="url">
                                 Company Website URL
-                            </CustomLabel>
+                            </SS.Label>
                             <CustomInput
                                 type="url"
                                 value={url}
@@ -41,7 +48,7 @@ const ProfileGenerator: React.FC = () => {
                                 placeholder="https://example.com"
                                 required
                             />
-                        </S.FormGroup>
+                        </SS.FormGroup>
 
                         <CustomButton
                             type="submit"
@@ -52,8 +59,12 @@ const ProfileGenerator: React.FC = () => {
                         >
                             Generate Profile
                         </CustomButton>
-                    </S.Form>
-                </S.Card>
+                    </SS.Form>
+                </SS.Card>
+
+                {company?.company_name && (
+                    <CompanyCard company={company} setCompany={setCompany} />
+                )}
             </S.MainWrapper>
         </S.Container>
     );

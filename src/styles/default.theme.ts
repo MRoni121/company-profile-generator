@@ -18,6 +18,7 @@ const theme = {
         textMediumEmphasis: '#475569',
         textLowEmphasis: '#9ca3af',
         lightBlue: '#3b82f6',
+        lightBlueBackground: '#eff6ff',
         blueGradient: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',
         darkBlueGradient: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
         greenGradient: 'linear-gradient(135deg, #059669 0%, #047857 100%)',
@@ -25,7 +26,17 @@ const theme = {
         red: '#ef4444',
         darkRed: '#dc2626',
         lightGray: '#f3f4f6',
-        gray: '#d1d5db'
+        gray: '#d1d5db',
+        grayHover: '#e5e7eb',
+        chips: {
+            lightBlue: '#dbeafe',
+            darkBlue: '#1e40af',
+            blue: '#bfdbfe',
+            lightGreen: '#ccfbf1',
+            darkGreen: '#0f766e',
+            green: '#99f6e4',
+            focusBackground: '#f9fafb'
+        }
     },
     bowShadow: {
         primary: 'box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1)'
