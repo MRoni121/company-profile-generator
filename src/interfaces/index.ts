@@ -5,6 +5,7 @@ export interface ServiceLine {
 }
 
 export interface CompanyProfile {
+    id: string;
     company_name: string;
     company_description: string;
     service_line: ServiceLine[];

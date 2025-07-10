@@ -29,6 +29,7 @@ const ProfileGenerator: React.FC = () => {
             if (res)
                 setCompany({
                     ...res,
+                    id: res.id || Math.random().toString(36).substring(2, 15),
                     website: url,
                     service_line: res.service_line.map((l) => ({
                         ...l,
@@ -85,7 +86,7 @@ const ProfileGenerator: React.FC = () => {
                     </SS.Form>
                 </SS.Card>
 
-                {company?.company_name && (
+                {company?.id && (
                     <CompanyCard company={company} setCompany={setCompany} />
                 )}
             </S.MainWrapper>
