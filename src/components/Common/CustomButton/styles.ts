@@ -30,6 +30,7 @@ export const Button = styled.button<{
         `;
             case 'danger':
                 return `
+          padding: 6px 12px;
           background: ${props.theme.colors.red};
           color: white;
           &:hover:not(:disabled) {

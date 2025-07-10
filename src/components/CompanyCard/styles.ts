@@ -38,3 +38,10 @@ export const SectionContent = styled.div`
     flex-direction: column;
     gap: 16px;
 `;
+
+export const ServiceLinesHeader = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+`;

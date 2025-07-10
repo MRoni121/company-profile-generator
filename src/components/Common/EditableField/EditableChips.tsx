@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Edit3, X } from 'lucide-react';
+
 import * as S from './styles';
 
 interface EditableChipsProps {
@@ -9,7 +10,7 @@ interface EditableChipsProps {
     onUpdate: (value: string[]) => void;
 }
 
-export const EditableChips: React.FC<EditableChipsProps> = ({
+const EditableChips: React.FC<EditableChipsProps> = ({
     value,
     placeholder,
     chipVariant,
@@ -97,3 +98,5 @@ export const EditableChips: React.FC<EditableChipsProps> = ({
         </S.EditableFieldWrapper>
     );
 };
+
+export default EditableChips;

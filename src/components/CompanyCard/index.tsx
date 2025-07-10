@@ -1,10 +1,15 @@
 import React from 'react';
 
+import EditableField from '../Common/EditableField';
+import EditableChips from '../Common/EditableField/EditableChips';
+
+import CustomButton from '../Common/CustomButton';
+import ServiceLineCard from './ServiceLineCard';
+
+import { CompanyProfile, ServiceLine } from '../../interfaces';
+
 import * as S from './styles';
 import * as SS from '../Common/styles';
-import { CompanyProfile } from '../../interfaces';
-import EditableField from '../Common/EditableField';
-import { EditableChips } from '../Common/EditableField/EditableChips';
 
 interface ICompanyCard {
     company: CompanyProfile;
@@ -109,6 +114,64 @@ const CompanyCard: React.FC<ICompanyCard> = ({ company, setCompany }) => {
                                 placeholder="Enter emails separated by commas"
                             />
                         </SS.FormGroup>
+                    </S.SectionContent>
+                </S.Section>
+                <S.Section>
+                    <S.ServiceLinesHeader>
+                        <S.SectionTitle>Service Lines</S.SectionTitle>
+                        <CustomButton
+                            onClick={() => {
+                                setCompany({
+                                    ...company,
+                                    service_lines: [
+                                        ...company.service_lines,
+                                        {
+                                            id: Date.now().toString(),
+                                            name: 'Service Line Name',
+                                            description:
+                                                'Service Line Description'
+                                        }
+                                    ]
+                                });
+                            }}
+                            variant="primary"
+                            icon="plus"
+                        >
+                            Add Service Line
+                        </CustomButton>
+                    </S.ServiceLinesHeader>
+
+                    <S.SectionContent>
+                        {company.service_lines.map((s, i) => (
+                            <div key={s.id}>
+                                <ServiceLineCard
+                                    onChange={(
+                                        updatedServiceLine: ServiceLine
+                                    ) => {
+                                        const updatedServiceLines = [
+                                            ...company.service_lines
+                                        ];
+                                        updatedServiceLines[i] =
+                                            updatedServiceLine;
+                                        setCompany({
+                                            ...company,
+                                            service_lines: updatedServiceLines
+                                        });
+                                    }}
+                                    onDelete={() => {
+                                        const updatedServiceLines =
+                                            company.service_lines.filter(
+                                                (sl) => sl.id !== s.id
+                                            );
+                                        setCompany({
+                                            ...company,
+                                            service_lines: updatedServiceLines
+                                        });
+                                    }}
+                                    {...s}
+                                />
+                            </div>
+                        ))}
                     </S.SectionContent>
                 </S.Section>
             </S.Grid>

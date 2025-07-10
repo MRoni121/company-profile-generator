@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react';
-import { CheckCircle } from 'lucide-react';
+import { CheckCircle, Plus, X } from 'lucide-react';
 
 import * as S from './styles';
 
-type IconType = 'check';
+type IconType = 'check' | 'plus' | 'x';
 
 type CustomButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
     isLoading?: boolean;
@@ -16,6 +16,10 @@ const getIcon = (icon?: IconType) => {
     switch (icon) {
         case 'check':
             return <CheckCircle size={20} />;
+        case 'plus':
+            return <Plus size={20} />;
+        case 'x':
+            return <X size={16} />;
         default:
             return null;
     }
