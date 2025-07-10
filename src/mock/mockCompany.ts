@@ -14,7 +14,7 @@ const mockCompany = {
         'artificial intelligence',
         'data analytics'
     ],
-    service_lines: [
+    service_line: [
         {
             id: '1',
             name: 'Cloud Services',

@@ -131,10 +131,12 @@ const CompanyCard: React.FC<ICompanyCard> = ({ company, setCompany }) => {
                             onClick={() => {
                                 setCompany({
                                     ...company,
-                                    service_lines: [
-                                        ...company.service_lines,
+                                    service_line: [
+                                        ...company.service_line,
                                         {
-                                            id: Date.now().toString(),
+                                            id: Math.random()
+                                                .toString(36)
+                                                .substring(2, 15),
                                             name: 'Service Line Name',
                                             description:
                                                 'Service Line Description'
@@ -150,30 +152,30 @@ const CompanyCard: React.FC<ICompanyCard> = ({ company, setCompany }) => {
                     </S.ServiceLinesHeader>
 
                     <S.SectionContent>
-                        {company.service_lines.map((s, i) => (
+                        {company.service_line.map((s, i) => (
                             <div key={s.id}>
                                 <ServiceLineCard
                                     onChange={(
                                         updatedServiceLine: ServiceLine
                                     ) => {
                                         const updatedServiceLines = [
-                                            ...company.service_lines
+                                            ...company.service_line
                                         ];
                                         updatedServiceLines[i] =
                                             updatedServiceLine;
                                         setCompany({
                                             ...company,
-                                            service_lines: updatedServiceLines
+                                            service_line: updatedServiceLines
                                         });
                                     }}
                                     onDelete={() => {
                                         const updatedServiceLines =
-                                            company.service_lines.filter(
+                                            company.service_line.filter(
                                                 (sl) => sl.id !== s.id
                                             );
                                         setCompany({
                                             ...company,
-                                            service_lines: updatedServiceLines
+                                            service_line: updatedServiceLines
                                         });
                                     }}
                                     {...s}

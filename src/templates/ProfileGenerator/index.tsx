@@ -2,24 +2,47 @@ import React, { useState } from 'react';
 
 import CustomInput from '../../components/Common/CustomInput';
 import CustomButton from '../../components/Common/CustomButton';
+import CompanyCard from '../../components/CompanyCard';
+
+import GPTService from '../../services/GPTService';
 
 import { CompanyProfile } from '../../interfaces';
 
-import * as SS from '../../components/Common/styles';
 import * as S from './styles';
-
-import mockCompany from '../../mock/mockCompany';
-import CompanyCard from '../../components/CompanyCard';
+import * as SS from '../../components/Common/styles';
 
 const ProfileGenerator: React.FC = () => {
     const [url, setUrl] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    const [company, setCompany] = useState<CompanyProfile>(mockCompany);
+    const [company, setCompany] = useState<CompanyProfile>(
+        {} as CompanyProfile
+    );
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        // TODO
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        setIsLoading(!isLoading);
+        setIsLoading(true);
+
+        const gptService = new GPTService();
+
+        try {
+            const res = await gptService.generateProfile(url);
+            if (res)
+                setCompany({
+                    ...res,
+                    website: url,
+                    service_line: res.service_line.map((l) => ({
+                        ...l,
+                        id: l.id || Math.random().toString(36).substring(2, 15) // Ensure each service line has a unique ID
+                    }))
+                });
+            else alert('Failed to generate profile. Please try again.');
+        } catch (error) {
+            alert(
+                'An error occurred while generating the profile. Please try again.'
+            );
+            console.error('Error generating profile:', error);
+        }
+        setIsLoading(false);
     };
 
     return (

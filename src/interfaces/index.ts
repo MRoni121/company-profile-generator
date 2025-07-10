@@ -7,7 +7,7 @@ export interface ServiceLine {
 export interface CompanyProfile {
     company_name: string;
     company_description: string;
-    service_lines: ServiceLine[];
+    service_line: ServiceLine[];
     tier1_keywords: string[];
     tier2_keywords: string[];
     emails: string[];
